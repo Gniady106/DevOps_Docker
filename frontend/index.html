@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Moja strona Docker Compose</title>
+    <style>
+        body { font-family: Arial; text-align:center; padding:50px; }
+        button { padding: 10px 20px; font-size: 16px; }
+        #msg { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>🚀 Frontend Docker Compose</h1>
+    <button onclick="fetchMessage()">Pobierz wiadomość z backendu</button>
+    <div id="msg"></div>
+
+    <script>
+        function fetchMessage() {
+            fetch('http://backend:3000/api/message')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('msg').innerText = data.message;
+                })
+                .catch(err => {
+                    document.getElementById('msg').innerText = 'Błąd połączenia z backendem';
+                });
+        }
+    </script>
+</body>
+</html>
